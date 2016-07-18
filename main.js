@@ -6,3 +6,7 @@ console.log('============================');
 console.log('Welcome to Hangman');
 console.log('You will have 9 guesses.  Choose wisely!');
 
+
+//console.log(select);
+
+select.choose();
