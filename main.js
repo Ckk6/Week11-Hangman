@@ -8,5 +8,6 @@ console.log('You will have 9 guesses.  Choose wisely!');
 
 
 //console.log(select);
-
+console.log(match);
 select.choose();
+match.spaces(select.phrase[i]);
