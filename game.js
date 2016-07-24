@@ -1,8 +1,5 @@
- var options = {
-	choices:["css","javascript","html","node","npm","json","ajax","mysql","jquery"],
-	};
-
-var list1 = new List(options);
+ 
+//var list1 = new List(options);
 
 
 function List (options) {
@@ -16,4 +13,4 @@ function List (options) {
 //list.choose();
 
 
-module.exports = list1;
+module.exports = List;

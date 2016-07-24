@@ -1,22 +1,31 @@
-var select = require('./game.js');
-var match = require('./word.js');
-var display = require('./letter.js');
+var Select = require('./game.js');
+var Match = require('./word.js');
+var Display = require('./letter.js');
 var inquirer = require('inquirer');
 
 	
 var space = '';
 var prevguess = ['a'];
-var numguess = 9;
+
 var repeat = false;
 var currentguess='no guess yet';
 
 function start(){
+    var select = new Select(options);
+    console.log(select);
+
+	//when game restarts number of guesses and previous guess array are reset   
+	numguess = 9;
+	prevguess = ['a'];
+	console.log('============================');
 	console.log('============================');
 	console.log('Welcome to Hangman');
 	console.log('You will have 9 guesses.  Choose wisely!');
 			
 	select.choose();
 	spaces(select.phrase[i]);
+	console.log('============================');
+	console.log('============================');
 	guesses();
 
 }
@@ -60,6 +69,14 @@ function guesses(){
     		prevguess.push(currentguess);
     		//call for match logic
     		console.log('now would be the time for match logic');
+            test {
+                guess:currentguess,
+                word:select.phrase[i]
+            }
+            //create a new instance of match
+            
+            match =  new Match(test);
+            match.makeArray();
 
     	}else{
     		console.log("You have guessed " + currentguess + " before.");
