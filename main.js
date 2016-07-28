@@ -2,31 +2,40 @@ var Select = require('./game.js');
 var Match = require('./word.js');
 var Display = require('./letter.js');
 var inquirer = require('inquirer');
+var options = {  
+    choices:["css","javascript","html","node","npm","json","ajax","mysql","jquery"]
+    };
 
-	
+var newWord = true
+;	
 var space = '';
-var prevguess = ['a'];
+//['a'] is test data
+var prevguess = [
+];
+
 
 var repeat = false;
 var currentguess='no guess yet';
 
 function start(){
     var select = new Select(options);
-    console.log(select);
+    //console.log(select);
 
 	//when game restarts number of guesses and previous guess array are reset   
 	numguess = 9;
-	prevguess = ['a'];
+	prevguess = [];
+    newWord = true
 	console.log('============================');
 	console.log('============================');
 	console.log('Welcome to Hangman');
 	console.log('You will have 9 guesses.  Choose wisely!');
-			
+	//Randomly choose a word		
 	select.choose();
+    //print out spaces to accomodate word
 	spaces(select.phrase[i]);
 	console.log('============================');
 	console.log('============================');
-	guesses();
+	guesses(select.phrase[i]);
 
 }
 function spaces(word){
@@ -38,7 +47,7 @@ function spaces(word){
 		console.log(space);
 	}//function
 
-function guesses(){
+function guesses(currentword){
 	inquirer.prompt({
         name: "guess",
         type: "input",
@@ -52,12 +61,9 @@ function guesses(){
     	console.log(currentguess);
     	//currentguess = currentguess.tolowercase();
        	console.log("Your guess is " + currentguess);
-       	console.log('the contents of prevguess is '+prevguess);
-    	//check to see if this letter was guessed previously
+       	//check to see if this letter was guessed previously
     	for (pg=0;pg<prevguess.length && repeat==false;pg++){
-    		console.log(pg);
-    		console.log(prevguess[pg]);
-    		
+    		    		
     		if (currentguess==prevguess[pg]){
     			console.log(prevguess[pg]+' is equal to '+ currentguess);
     			repeat = true;
@@ -65,23 +71,28 @@ function guesses(){
     	}
 
     	if (repeat===false){
-    		numguess--;  
-    		prevguess.push(currentguess);
-    		//call for match logic
-    		console.log('now would be the time for match logic');
-            test {
-                guess:currentguess,
-                word:select.phrase[i]
-            }
-            //create a new instance of match
-            
-            match =  new Match(test);
-            match.makeArray();
+           	prevguess.push(currentguess);
+    		test = {guess: currentguess, word: currentword};
+            //check if we need a new instance of match
+            if (newWord == true){
+                newWord = false;
+                match =  new Match(test);
+                console.log('i have created new instance of Match');
+                //console.log(match)
+                match.makeArray();
+                console.log('i have made a new wordArray');
+            }else{
+                //keep current instance of match and wordArray
+                //just update the guessfield with current guess
+                match.guess = currrentguess;
+            }    
+            match.evalguess();
+            guesses(select.phrase[i]);
 
     	}else{
     		console.log("You have guessed " + currentguess + " before.");
     			//and call for new guesses
-    			guesses();
+    			guesses(select.phrase[i]);
 
     	}
     	

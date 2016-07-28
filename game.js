@@ -1,6 +1,4 @@
  
-//var list1 = new List(options);
-
 
 function List (options) {
 	this.phrase = options.choices,
