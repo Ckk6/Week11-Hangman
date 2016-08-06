@@ -6,12 +6,13 @@ var options = {
     choices:["css","javascript","html","node","npm","json","ajax","mysql","jquery"]
     };
 
-var newWord = true
-;	
+var newWord = true;
+//word is a global word to hold select.phrase[i]
+var word=''
+	
 var space = '';
 //['a'] is test data
-var prevguess = [
-];
+var prevguess = [];
 
 
 var repeat = false;
@@ -35,7 +36,9 @@ function start(){
 	spaces(select.phrase[i]);
 	console.log('============================');
 	console.log('============================');
-	guesses(select.phrase[i]);
+    word = select.phrase[i];
+    guesses(select.phrase[i]); 
+	
 
 }
 function spaces(word){
@@ -77,31 +80,62 @@ function guesses(currentword){
             if (newWord == true){
                 newWord = false;
                 match =  new Match(test);
-                console.log('i have created new instance of Match');
-                //console.log(match)
+                console.log('I have created new instance of Match');
+                //console.log(match)m5
                 match.makeArray();
                 console.log('i have made a new wordArray');
             }else{
                 //keep current instance of match and wordArray
                 //just update the guessfield with current guess
-                match.guess = currrentguess;
+                match.guess = currentguess;
             }    
             match.evalguess();
-            guesses(select.phrase[i]);
+            console.log('i am back in main')
+            if (match.matchy == true){
+                console.log('matchy is true');
+                match.matchy = false;
+                match.didyouwin();
+            }else{ 
+                numguess--;
+            }
 
-    	}else{
+        }else{
     		console.log("You have guessed " + currentguess + " before.");
     			//and call for new guesses
-    			guesses(select.phrase[i]);
-
+    			
     	}
-    	
-    	
-    	
+        console.log('i am about to test if the game is over in guesses ');
+        if (numguess == 0 || match.wordGuessed == true){
+            console.log('game is over');
+            endgame(word);
+        } else{
+            console.log('game is not over');
+            console.log(word);
+            guesses(word);
+        }
+      	
+    })//end .then
+}// end guesses function
 
-    });
+function endgame(currentword){
+    if(match.wordGuessed == true){
+        console.log('**************************************');
+        console.log('**************************************');
+        console.log('CONGRATULATIONS!! YOU GUESSED IT!!');
+        console.log('**************************************');
+        console.log('**************************************');
+    }else{
+        console.log('**************************************');
+        console.log('**************************************');
+        console.log('Oh well!! You have used all of your guesses.');
+        console.log('The word was ',word);
+        console.log('**************************************');
+        console.log('**************************************');
+    }
+    //Ask if you want to play again and reset game if so
+    //start();
+    //else{
+        //console.log('Thank you for playing');
 }
 
-
-
-start(); 
+start();

@@ -1,27 +1,29 @@
 var Display = require('./letter.js');
 
 
-
 function RORW(test){
-	this.wordArray= []
+	this.wordArray= [];
 	this.guess = test.guess;
 	this.word = test.word;
 	this.matchy = false;
 	this.win = false;
-
-	//this.result = '';
+	this.wordguessed = true;
+	
 	this.makeArray = function(){
 		for( var w=0;w<this.word.length;w++){
 			//create array of objects with appear set to false
 			//by using the letter.js creating new instance of letter
 			display = new Display(this.word[w]);
+
+
 			//display.evalshow();
 
 			this.wordArray.push(display);
 			
 		}
 		
-	}
+	}//end this.makearray
+
 	this.evalguess = function(){
 		console.log('I am in evalguess');
 
@@ -36,38 +38,34 @@ function RORW(test){
 				//adjust matchy to true
 				this.matchy = true;
 							
-			}else{console.log(this.guess +' did not equal '+this.wordArray[eg].let);
-				
+			}else{
+				console.log(this.guess +' did not equal '+this.wordArray[eg].let);
 			}
 			console.log('===================================');
 			console.log(this.wordArray[eg]);
 			//now indicate what letters should be printed
 			display.evalshow(this.wordArray[eg].let, this.wordArray[eg].appear);
 			//print out appropriate letters and spaces
-			 console.log(display.show);
+			console.log(display.show);
+		
 	
-	}// end for loop
+		}// end for loop
+		console.log('i am ending evalguess');
 		
-			
-		
-			
-	}//function
+	}//end this.evalguess
 
-	//this.didyouwin(){}
+	this.didyouwin = function(){
+		console.log('I am in didyouwin')
+		for(var win = 0;win<this.wordArray.length;win++){
+			console.log('this.wordArray[win].appear ',this.wordArray[win].appear);
+			if (this.wordArray[win].appear == false){
+				this.wordGuessed = false;
+				console.log('wordGuessed',this.wordGuessed);
+				return this.wordGuessed;
+			}
+		}
+   	}
+}//function
 
-     	//code this to check if all of the display.appear fields are true
-		//this.wordArray.every()
-		
-		//code this to check if all of the display.appear fields are true
-		//if they are do win logic-- set this.win to true
-		
-
-}
-
-
-
-//testlogic
-//rorw1.makeArray();
-//rorw1.evalguess();
 
 module.exports = RORW;
