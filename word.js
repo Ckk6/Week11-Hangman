@@ -14,12 +14,8 @@ function RORW(test){
 			//create array of objects with appear set to false
 			//by using the letter.js creating new instance of letter
 			display = new Display(this.word[w]);
-
-
 			//display.evalshow();
-
 			this.wordArray.push(display);
-			
 		}
 		
 	}//end this.makearray
@@ -46,10 +42,14 @@ function RORW(test){
 			//now indicate what letters should be printed
 			display.evalshow(this.wordArray[eg].let, this.wordArray[eg].appear);
 			//print out appropriate letters and spaces
-			console.log(display.show);
+			
 		
 	
 		}// end for loop
+		console.log('#########################################');
+		console.log(display.show);
+		console.log('#########################################');
+		display.show = '';
 		console.log('i am ending evalguess');
 		
 	}//end this.evalguess
