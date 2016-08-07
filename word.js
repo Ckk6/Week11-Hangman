@@ -34,8 +34,6 @@ function RORW(test){
 				//adjust matchy to true
 				this.matchy = true;
 							
-			}else{
-				console.log(this.guess +' did not equal '+this.wordArray[eg].let);
 			}
 			console.log('===================================');
 			console.log(this.wordArray[eg]);
@@ -43,14 +41,12 @@ function RORW(test){
 			display.evalshow(this.wordArray[eg].let, this.wordArray[eg].appear);
 			//print out appropriate letters and spaces
 			
-		
-	
 		}// end for loop
 		console.log('#########################################');
 		console.log(display.show);
 		console.log('#########################################');
 		display.show = '';
-		console.log('i am ending evalguess');
+		//console.log('i am ending evalguess');
 		
 	}//end this.evalguess
 
@@ -61,9 +57,10 @@ function RORW(test){
 			if (this.wordArray[win].appear == false){
 				this.wordGuessed = false;
 				console.log('wordGuessed',this.wordGuessed);
-				return this.wordGuessed;
+				
 			}
 		}
+		return this.wordGuessed;
    	}
 }//function
 

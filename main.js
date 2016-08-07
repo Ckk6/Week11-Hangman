@@ -20,7 +20,7 @@ var currentguess='no guess yet';
 
 function start(){
     var select = new Select(options);
-    //console.log(select);
+    
 
 	//when game restarts number of guesses and previous guess array are reset   
 	numguess = 9;
@@ -42,9 +42,8 @@ function start(){
 
 }
 function spaces(word){
-		//console.log(word);
 		for(s = 0; s < word.length; s++){
-			space += "_ ";
+		space += "_ ";
 			
 		}//for loop
 		console.log(space);
@@ -81,7 +80,6 @@ function guesses(currentword){
                 newWord = false;
                 match =  new Match(test);
                 console.log('I have created new instance of Match');
-                //console.log(match)m5
                 match.makeArray();
                 console.log('i have made a new wordArray');
             }else{
@@ -90,13 +88,13 @@ function guesses(currentword){
                 match.guess = currentguess;
             }    
             match.evalguess();
-            console.log('i am back in main')
             if (match.matchy == true){
                 console.log('matchy is true');
                 match.matchy = false;
                 match.didyouwin();
             }else{ 
                 numguess--;
+                console.log('you have ', numguess, 'guesses left')
             }
 
         }else{
@@ -105,7 +103,7 @@ function guesses(currentword){
     			
     	}
         console.log('i am about to test if the game is over in guesses ');
-        if (numguess == 0 || match.wordGuessed == true){
+        if (numguess === 0 || match.wordGuessed == true){
             console.log('game is over');
             endgame(word);
         } else{
@@ -132,6 +130,47 @@ function endgame(currentword){
         console.log('**************************************');
         console.log('**************************************');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Ask if you want to play again and reset game if so
     //start();
     //else{

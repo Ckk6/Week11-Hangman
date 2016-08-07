@@ -3,6 +3,7 @@ function EachLetter(letter){
 	this.appear = false;
 	this.show ='';
 	this.evalshow = function(evallet, newAppear) {
+		
 		console.log('i am in evalshow');
 		console.log('@@@@',evallet);
 		if (newAppear == false){
