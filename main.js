@@ -131,50 +131,20 @@ function endgame(currentword){
         console.log('**************************************');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Ask if you want to play again and reset game if so
-    //start();
-    //else{
-        //console.log('Thank you for playing');
+    inquirer.prompt({
+             name: "confirm",
+             type: "confirm",
+             message: "Would you like to play again?"
+        }).then(function(answer) {
+            //IF THE ANSWER IS YES, restart the game
+             if (answer.confirm == true) {
+                start();
+            }else{
+    
+                console.log('Thank you for playing');
+            }
+        });    
 }
+
 
 start();
