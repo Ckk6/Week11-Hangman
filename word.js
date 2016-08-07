@@ -51,18 +51,15 @@ function RORW(test){
 	}//end this.evalguess
 
 	this.didyouwin = function(){
+		this.wordGuessed = true;
 		console.log('I am in didyouwin')
 		for(var win = 0;win<this.wordArray.length;win++){
 			console.log('this.wordArray[win].appear ',this.wordArray[win].appear);
 			if (this.wordArray[win].appear == false){
 				this.wordGuessed = false;
-				console.log('wordGuessed',this.wordGuessed);
-				
+				console.log('@@@wordGuessed',this.wordGuessed);
 			}
 		}
-		return this.wordGuessed;
-   	}
-}//function
-
-
+	}
+}				 
 module.exports = RORW;
