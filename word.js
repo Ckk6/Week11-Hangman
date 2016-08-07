@@ -21,22 +21,17 @@ function RORW(test){
 	}//end this.makearray
 
 	this.evalguess = function(){
-		console.log('I am in evalguess');
-
+		
 		for(var eg = 0;eg < this.wordArray.length;eg++){
-			console.log(' eg: ',eg)
-			console.log(this.wordArray[eg].let);
-			console.log('===================================');
+	
 			if (this.guess === this.wordArray[eg].let){
-				console.log('Girl you know its true');
+				
 				//adjust appear to true
 				this.wordArray[eg].appear = true;
 				//adjust matchy to true
 				this.matchy = true;
 							
 			}
-			console.log('===================================');
-			console.log(this.wordArray[eg]);
 			//now indicate what letters should be printed
 			display.evalshow(this.wordArray[eg].let, this.wordArray[eg].appear);
 			//print out appropriate letters and spaces
@@ -52,12 +47,12 @@ function RORW(test){
 
 	this.didyouwin = function(){
 		this.wordGuessed = true;
-		console.log('I am in didyouwin')
+		
 		for(var win = 0;win<this.wordArray.length;win++){
-			console.log('this.wordArray[win].appear ',this.wordArray[win].appear);
+			
 			if (this.wordArray[win].appear == false){
 				this.wordGuessed = false;
-				console.log('@@@wordGuessed',this.wordGuessed);
+				
 			}
 		}
 	}

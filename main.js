@@ -10,8 +10,7 @@ var newWord = true;
 //word is a global word to hold select.phrase[i]
 var word=''
 	
-var space = '';
-//['a'] is test data
+
 var prevguess = [];
 
 
@@ -42,7 +41,8 @@ function start(){
 
 }
 function spaces(word){
-		for(s = 0; s < word.length; s++){
+    var space = '';
+	for(s = 0; s < word.length; s++){
 		space += "_ ";
 			
 		}//for loop
@@ -56,8 +56,7 @@ function guesses(currentword){
         message: "Please select a letter.",
         
     }).then(function(answer) {
-    	console.log(answer.guess);
-    	currentguess = answer.guess;
+      	currentguess = answer.guess;
     	//reset repeat
     	repeat = false;
     	console.log(currentguess);
@@ -67,7 +66,6 @@ function guesses(currentword){
     	for (pg=0;pg<prevguess.length && repeat==false;pg++){
     		    		
     		if (currentguess==prevguess[pg]){
-    			console.log(prevguess[pg]+' is equal to '+ currentguess);
     			repeat = true;
     		}			
     	}
@@ -79,9 +77,8 @@ function guesses(currentword){
             if (newWord == true){
                 newWord = false;
                 match =  new Match(test);
-                console.log('I have created new instance of Match');
                 match.makeArray();
-                console.log('i have made a new wordArray');
+                
             }else{
                 //keep current instance of match and wordArray
                 //just update the guessfield with current guess
@@ -89,7 +86,7 @@ function guesses(currentword){
             }    
             match.evalguess();
             if (match.matchy == true){
-                console.log('matchy is true');
+                
                 match.matchy = false;
                 match.didyouwin();
             }else{ 
@@ -102,13 +99,9 @@ function guesses(currentword){
     			//and call for new guesses
     			
     	}
-        console.log('i am about to test if the game is over in guesses ');
         if (numguess === 0 || match.wordGuessed == true){
-            console.log('game is over');
             endgame(word);
         } else{
-            console.log('game is not over');
-            console.log(word);
             guesses(word);
         }
       	
